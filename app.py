@@ -88,78 +88,6 @@ if st.session_state.page == "questions":
     st.subheader("④ 生活スタイル")
     q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
                    help="1=行き当たりばったりOK ／ 5=計画必須")
-    st.subheader("① エネルギーの向き")
-    q1 = st.slider("大勢といると元気になる", 1, 5, 3, key="q1",
-                   help="1=一人が好き ／ 5=大勢が好き")
-    q2 = st.slider("初対面でもすぐ打ち解ける", 1, 5, 3, key="q2",
-                   help="1=時間がかかる ／ 5=すぐ打ち解ける")
-    st.divider()
-
-    st.subheader("② 情報の受け取り方")
-    q3 = st.slider("実績ある手順を好む", 1, 5, 3, key="q3",
-                   help="1=新しいやり方派 ／ 5=実績ある手順派")
-    q4 = st.slider("今の現実を重視する", 1, 5, 3, key="q4",
-                   help="1=可能性重視 ／ 5=現実重視")
-    st.divider()
-
-    st.subheader("③ 判断の基準")
-    q5 = st.slider("論理・データで決断する", 1, 5, 3, key="q5",
-                   help="1=感情・人間関係派 ／ 5=論理・データ派")
-    q6 = st.slider("率直な批評をする", 1, 5, 3, key="q6",
-                   help="1=気持ちを優先する ／ 5=率直に言う")
-    st.divider()
-
-    st.subheader("④ 生活スタイル")
-    q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
-                   help="1=行き当たりばったりOK ／ 5=計画必須")st.subheader("① エネルギーの向き")
-    q1 = st.slider("大勢といると元気になる", 1, 5, 3, key="q1",
-                   help="1=一人が好き ／ 5=大勢が好き")
-    q2 = st.slider("初対面でもすぐ打ち解ける", 1, 5, 3, key="q2",
-                   help="1=時間がかかる ／ 5=すぐ打ち解ける")
-    st.divider()
-
-    st.subheader("② 情報の受け取り方")
-    q3 = st.slider("実績ある手順を好む", 1, 5, 3, key="q3",
-                   help="1=新しいやり方派 ／ 5=実績ある手順派")
-    q4 = st.slider("今の現実を重視する", 1, 5, 3, key="q4",
-                   help="1=可能性重視 ／ 5=現実重視")
-    st.divider()
-
-    st.subheader("③ 判断の基準")
-    q5 = st.slider("論理・データで決断する", 1, 5, 3, key="q5",
-                   help="1=感情・人間関係派 ／ 5=論理・データ派")
-    q6 = st.slider("率直な批評をする", 1, 5, 3, key="q6",
-                   help="1=気持ちを優先する ／ 5=率直に言う")
-    st.divider()
-
-    st.subheader("④ 生活スタイル")
-    q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
-                   help="1=行き当たりばったりOK ／ 5=計画必須")st.subheader("① エネルギーの向き")
-    q1 = st.slider("大勢といると元気になる", 1, 5, 3, key="q1",
-                   help="1=一人が好き ／ 5=大勢が好き")
-    q2 = st.slider("初対面でもすぐ打ち解ける", 1, 5, 3, key="q2",
-                   help="1=時間がかかる ／ 5=すぐ打ち解ける")
-    st.divider()
-
-    st.subheader("② 情報の受け取り方")
-    q3 = st.slider("実績ある手順を好む", 1, 5, 3, key="q3",
-                   help="1=新しいやり方派 ／ 5=実績ある手順派")
-    q4 = st.slider("今の現実を重視する", 1, 5, 3, key="q4",
-                   help="1=可能性重視 ／ 5=現実重視")
-    st.divider()
-
-    st.subheader("③ 判断の基準")
-    q5 = st.slider("論理・データで決断する", 1, 5, 3, key="q5",
-                   help="1=感情・人間関係派 ／ 5=論理・データ派")
-    q6 = st.slider("率直な批評をする", 1, 5, 3, key="q6",
-                   help="1=気持ちを優先する ／ 5=率直に言う")
-    st.divider()
-
-    st.subheader("④ 生活スタイル")
-    q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
-                   help="1=行き当たりばったりOK ／ 5=計画必須")
-    q8 = st.slider("締め切りは絶対に守る（直前集中より早めに終わらせる）", 1, 5, 3, key="q8",
-                   help="1=直前集中派 ／ 5=早め完了派")
     st.divider()
 
     if st.button("診断する", type="primary", use_container_width=True):
@@ -213,4 +141,10 @@ elif st.session_state.page == "result":
         st.session_state.page = "questions"
         st.session_state.mbti = None
         st.rerun()
-#streamlit run app.py
+```
+
+---
+
+貼り付けたら保存して：
+```
+streamlit run app.py
