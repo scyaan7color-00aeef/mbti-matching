@@ -58,6 +58,11 @@ div[class*="stRadio"] > label p { font-size: 1.25rem !important; font-weight: 70
 div[class*="stRadio"] label div p { font-size: 14px !important; font-weight: normal !important; }
 </style>
 """, unsafe_allow_html=True)
+# --- セッション状態 ---
+if "page" not in st.session_state:
+    st.session_state.page = "questions"
+if "mbti" not in st.session_state:
+    st.session_state.mbti = None
 # =====================
 # ページ1：質問
 # =====================
