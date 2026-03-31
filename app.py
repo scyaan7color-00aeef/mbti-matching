@@ -14,7 +14,6 @@ def get_color_group(mbti):
             return group, data
     return "NT", MBTI_COLORS["NT"]
 
-# 業界スコア計算
 WEIGHTS = {
     "IT・ソフトウェア":   [10, 20,  5, 25, 30,  5, 20, 15],
     "コンサルティング":   [25,  5, 10, 20, 25,  5, 20, 10],
@@ -47,22 +46,13 @@ def derive_mbti(e_score, s_score, t_score, j_score):
     j = "J" if j_score >= 3 else "P"
     return e + s + t + j
 
-# --- ページ設定 ---
 st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
-# カスタムCSS
-def radio_score(key, label):
-        st.markdown(f"<p style='font-size:1.2rem; font-weight:700; margin-bottom:4px;'>{label}</p>", unsafe_allow_html=True)
-        answer = st.radio("　", options, index=2, key=key, horizontal=True, label_visibility="collapsed")
-        return options.index(answer) + 1
-""", unsafe_allow_html=True)
-# --- セッション状態 ---
+
 if "page" not in st.session_state:
     st.session_state.page = "questions"
 if "mbti" not in st.session_state:
     st.session_state.mbti = None
-# =====================
-# ページ1：質問
-# =====================
+
 if st.session_state.page == "questions":
     st.title("就活 自己分析診断")
     st.write("各質問に正直に答えてください。")
@@ -71,7 +61,8 @@ if st.session_state.page == "questions":
     options = ["まったくそう思わない", "あまりそう思わない", "どちらでもない", "ややそう思う", "とてもそう思う"]
 
     def radio_score(key, label):
-        answer = st.radio(label, options, index=2, key=key, horizontal=True)
+        st.markdown(f"<p style='font-size:1.2rem; font-weight:700; margin-bottom:4px;'>{label}</p>", unsafe_allow_html=True)
+        answer = st.radio("　", options, index=2, key=key, horizontal=True, label_visibility="collapsed")
         return options.index(answer) + 1
 
     q1 = radio_score("q1", "大勢の人といると、エネルギーが湧いてくる")
@@ -103,33 +94,22 @@ if st.session_state.page == "questions":
         st.session_state.page = "result"
         st.rerun()
 
-# =====================
-# ページ2：結果
-# =====================
 elif st.session_state.page == "result":
     mbti = st.session_state.mbti
     group, color_data = get_color_group(mbti)
 
-    # カラーテーマ背景
     st.markdown(
-        f"""
-        <div style="
-            background-color: {color_data['hex']}22;
-            border-left: 6px solid {color_data['hex']};
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        ">
-            <h1 style="color: {color_data['hex']}; margin: 0;">あなたのタイプ：{mbti}</h1>
-            <p style="font-size: 18px; margin: 8px 0 0;">
-                カラーグループ：<strong>{color_data['name']}（{group}型）</strong>
-            </p>
-        </div>
-        """,
+        f"<div style='"
+        f"background-color:{color_data['hex']}22;"
+        f"border-left:6px solid {color_data['hex']};"
+        f"border-radius:8px;padding:20px;margin-bottom:20px;'>"
+        f"<h1 style='color:{color_data['hex']};margin:0;'>あなたのタイプ：{mbti}</h1>"
+        f"<p style='font-size:18px;margin:8px 0 0;'>"
+        f"カラーグループ：<strong>{color_data['name']}（{group}型）</strong></p>"
+        f"</div>",
         unsafe_allow_html=True
     )
 
-    # スコア計算・表示
     scores = calc_scores(mbti)
     sorted_scores = dict(sorted(scores.items(), key=lambda x: x[1], reverse=True))
 
@@ -145,4 +125,3 @@ elif st.session_state.page == "result":
         st.session_state.page = "questions"
         st.session_state.mbti = None
         st.rerun()
-#streamlit run app.py
