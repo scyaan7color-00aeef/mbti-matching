@@ -52,10 +52,10 @@ st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
 # カスタムCSS
 st.markdown("""
 <style>
-/* 質問文を太字・サブヘッダーと同サイズに */
-div[class*="stRadio"] > label p { font-size: 1.25rem !important; font-weight: 700 !important; }
-/* 選択肢は小さめ */
-div[class*="stRadio"] label div p { font-size: 14px !important; font-weight: normal !important; }
+/* ラジオボタンの質問ラベル全体を大きく太く */
+.stRadio label { font-size: 1.2rem !important; font-weight: 700 !important; }
+/* 選択肢テキストだけ小さく戻す */
+.stRadio div[role="radiogroup"] label { font-size: 0.9rem !important; font-weight: 400 !important; }
 </style>
 """, unsafe_allow_html=True)
 # --- セッション状態 ---
