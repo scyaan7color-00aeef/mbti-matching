@@ -89,6 +89,9 @@ if st.session_state.page == "questions":
     q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
                    help="1=行き当たりばったりOK ／ 5=計画必須")
     st.divider()
+    
+    q8 = st.slider("締め切りは早めに終わらせる", 1, 5, 3, key="q8",
+                   help="1=直前集中派 ／ 5=早め完了派")
 
     if st.button("診断する", type="primary", use_container_width=True):
         e_score = (q1 + q2) / 2
