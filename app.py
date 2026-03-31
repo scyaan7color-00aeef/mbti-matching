@@ -52,12 +52,10 @@ st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
 # カスタムCSS
 st.markdown("""
 <style>
-/* 質問文を大きく */
-div[class*="stRadio"] > label p { font-size: 20px !important; font-weight: 600; }
-/* 選択肢を少し小さく */
-div[class*="stRadio"] label div p { font-size: 14px !important; font-weight: normal; }
-/* subheaderを小さく */
-h3 { font-size: 18px !important; }
+/* 質問文を太字・サブヘッダーと同サイズに */
+div[class*="stRadio"] > label p { font-size: 1.25rem !important; font-weight: 700 !important; }
+/* 選択肢は小さめ */
+div[class*="stRadio"] label div p { font-size: 14px !important; font-weight: normal !important; }
 </style>
 """, unsafe_allow_html=True)
 # =====================
@@ -74,25 +72,21 @@ if st.session_state.page == "questions":
         answer = st.radio(label, options, index=2, key=key, horizontal=True)
         return options.index(answer) + 1
 
-    st.subheader("① エネルギーの向き")
     q1 = radio_score("q1", "大勢の人といると、エネルギーが湧いてくる")
     q2 = radio_score("q2", "初対面の人とも、すぐに打ち解けられる")
     q3 = radio_score("q3", "一人でいる時間より、誰かといる時間のほうが好きだ")
     st.divider()
 
-    st.subheader("② 情報の受け取り方")
     q4 = radio_score("q4", "新しいアイデアより、実績ある方法を好む")
     q5 = radio_score("q5", "将来の可能性より、今の現実を重視する")
     q6 = radio_score("q6", "細かいデータや事実を丁寧に確認するほうだ")
     st.divider()
 
-    st.subheader("③ 判断の基準")
     q7 = radio_score("q7", "感情より論理・データで決断する")
     q8 = radio_score("q8", "相手に対して率直な意見を言える")
     q9 = radio_score("q9", "公平性やルールを、思いやりより優先することがある")
     st.divider()
 
-    st.subheader("④ 生活スタイル")
     q10 = radio_score("q10", "計画を立ててから行動しないと落ち着かない")
     q11 = radio_score("q11", "締め切りは早めに終わらせる派だ")
     q12 = radio_score("q12", "予定が急に変わると、ストレスを感じる")
