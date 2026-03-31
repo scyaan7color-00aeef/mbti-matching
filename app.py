@@ -49,7 +49,13 @@ def derive_mbti(e_score, s_score, t_score, j_score):
 
 # --- ページ設定 ---
 st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
-
+# カスタムCSS
+st.markdown("""
+<style>
+div[class*="stRadio"] label { font-size: 16px !important; }
+div[class*="stRadio"] > label { font-size: 18px !important; font-weight: bold; }
+</style>
+""", unsafe_allow_html=True)
 # --- セッション状態 ---
 if "page" not in st.session_state:
     st.session_state.page = "questions"
@@ -61,43 +67,44 @@ if "mbti" not in st.session_state:
 # =====================
 if st.session_state.page == "questions":
     st.title("就活 自己分析診断")
-    st.write("各質問に1〜5で答えてください。（1=左に近い、5=右に近い）")
+    st.write("各質問に正直に答えてください。")
     st.divider()
 
+    options = ["まったくそう思わない", "あまりそう思わない", "どちらでもない", "ややそう思う", "とてもそう思う"]
+
+    def radio_score(key, label):
+        answer = st.radio(label, options, index=2, key=key, horizontal=True)
+        return options.index(answer) + 1
+
     st.subheader("① エネルギーの向き")
-    q1 = st.slider("大勢といると元気になる", 1, 5, 3, key="q1",
-                   help="1=一人が好き ／ 5=大勢が好き")
-    q2 = st.slider("初対面でもすぐ打ち解ける", 1, 5, 3, key="q2",
-                   help="1=時間がかかる ／ 5=すぐ打ち解ける")
+    q1 = radio_score("q1", "大勢の人といると、エネルギーが湧いてくる")
+    q2 = radio_score("q2", "初対面の人とも、すぐに打ち解けられる")
+    q3 = radio_score("q3", "一人でいる時間より、誰かといる時間のほうが好きだ")
     st.divider()
 
     st.subheader("② 情報の受け取り方")
-    q3 = st.slider("実績ある手順を好む", 1, 5, 3, key="q3",
-                   help="1=新しいやり方派 ／ 5=実績ある手順派")
-    q4 = st.slider("今の現実を重視する", 1, 5, 3, key="q4",
-                   help="1=可能性重視 ／ 5=現実重視")
+    q4 = radio_score("q4", "新しいアイデアより、実績ある方法を好む")
+    q5 = radio_score("q5", "将来の可能性より、今の現実を重視する")
+    q6 = radio_score("q6", "細かいデータや事実を丁寧に確認するほうだ")
     st.divider()
 
     st.subheader("③ 判断の基準")
-    q5 = st.slider("論理・データで決断する", 1, 5, 3, key="q5",
-                   help="1=感情・人間関係派 ／ 5=論理・データ派")
-    q6 = st.slider("率直な批評をする", 1, 5, 3, key="q6",
-                   help="1=気持ちを優先する ／ 5=率直に言う")
+    q7 = radio_score("q7", "感情より論理・データで決断する")
+    q8 = radio_score("q8", "相手に対して率直な意見を言える")
+    q9 = radio_score("q9", "公平性やルールを、思いやりより優先することがある")
     st.divider()
 
     st.subheader("④ 生活スタイル")
-    q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
-                   help="1=行き当たりばったりOK ／ 5=計画必須")
+    q10 = radio_score("q10", "計画を立ててから行動しないと落ち着かない")
+    q11 = radio_score("q11", "締め切りは早めに終わらせる派だ")
+    q12 = radio_score("q12", "予定が急に変わると、ストレスを感じる")
     st.divider()
-    
-    q8 = st.slider("締め切りは早めに終わらせる", 1, 5, 3, key="q8",
-                   help="1=直前集中派 ／ 5=早め完了派")
 
     if st.button("診断する", type="primary", use_container_width=True):
-        e_score = (q1 + q2) / 2
-        s_score = (q3 + q4) / 2
-        t_score = (q5 + q6) / 2
-        j_score = (q7 + q8) / 2
+        e_score = (q1 + q2 + q3) / 3
+        s_score = (q4 + q5 + q6) / 3
+        t_score = (q7 + q8 + q9) / 3
+        j_score = (q10 + q11 + q12) / 3
         st.session_state.mbti = derive_mbti(e_score, s_score, t_score, j_score)
         st.session_state.page = "result"
         st.rerun()
