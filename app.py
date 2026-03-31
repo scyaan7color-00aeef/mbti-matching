@@ -50,13 +50,10 @@ def derive_mbti(e_score, s_score, t_score, j_score):
 # --- ページ設定 ---
 st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
 # カスタムCSS
-st.markdown("""
-<style>
-/* ラジオボタンの質問ラベル全体を大きく太く */
-.stRadio label { font-size: 1.2rem !important; font-weight: 700 !important; }
-/* 選択肢テキストだけ小さく戻す */
-.stRadio div[role="radiogroup"] label { font-size: 0.9rem !important; font-weight: 400 !important; }
-</style>
+def radio_score(key, label):
+        st.markdown(f"<p style='font-size:1.2rem; font-weight:700; margin-bottom:4px;'>{label}</p>", unsafe_allow_html=True)
+        answer = st.radio("　", options, index=2, key=key, horizontal=True, label_visibility="collapsed")
+        return options.index(answer) + 1
 """, unsafe_allow_html=True)
 # --- セッション状態 ---
 if "page" not in st.session_state:
