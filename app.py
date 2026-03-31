@@ -52,16 +52,14 @@ st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
 # カスタムCSS
 st.markdown("""
 <style>
-div[class*="stRadio"] label { font-size: 16px !important; }
-div[class*="stRadio"] > label { font-size: 18px !important; font-weight: bold; }
+/* 質問文を大きく */
+div[class*="stRadio"] > label p { font-size: 20px !important; font-weight: 600; }
+/* 選択肢を少し小さく */
+div[class*="stRadio"] label div p { font-size: 14px !important; font-weight: normal; }
+/* subheaderを小さく */
+h3 { font-size: 18px !important; }
 </style>
 """, unsafe_allow_html=True)
-# --- セッション状態 ---
-if "page" not in st.session_state:
-    st.session_state.page = "questions"
-if "mbti" not in st.session_state:
-    st.session_state.mbti = None
-
 # =====================
 # ページ1：質問
 # =====================
