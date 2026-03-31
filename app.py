@@ -141,10 +141,4 @@ elif st.session_state.page == "result":
         st.session_state.page = "questions"
         st.session_state.mbti = None
         st.rerun()
-```
-
----
-
-貼り付けたら保存して：
-```
-streamlit run app.py
+#streamlit run app.py
