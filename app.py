@@ -87,7 +87,8 @@ if st.session_state.page == "questions":
 
     st.subheader("④ 生活スタイル")
     q7 = st.slider("計画を立てないと落ち着かない", 1, 5, 3, key="q7",
-                   help="1=行き当たりばったりOK ／ 5=計画必須")st.subheader("① エネルギーの向き")
+                   help="1=行き当たりばったりOK ／ 5=計画必須")
+    st.subheader("① エネルギーの向き")
     q1 = st.slider("大勢といると元気になる", 1, 5, 3, key="q1",
                    help="1=一人が好き ／ 5=大勢が好き")
     q2 = st.slider("初対面でもすぐ打ち解ける", 1, 5, 3, key="q2",
