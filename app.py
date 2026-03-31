@@ -48,7 +48,7 @@ def derive_mbti(e_score, s_score, t_score, j_score):
     return e + s + t + j
 
 # --- ページ設定 ---
-set_page_config(page_title="就活MBTIマッチング", layout="centered")
+st.set_page_config(page_title="就活MBTIマッチング", layout="centered")
 # カスタムCSS
 st.markdown("""
 <style>
